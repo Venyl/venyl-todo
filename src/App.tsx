@@ -62,12 +62,14 @@ function App() {
             </form>
 
             <div className="flex flex-col gap-2 max-h-[50vh] overflow-auto bg-zinc-900 p-4 rounded-xl">
-                <button
-                    className="btn-primary bg-zinc-700 hover:bg-zinc-800 py-1"
-                    onClick={clearCompletedTodos}
-                >
-                    Clear completed todos
-                </button>
+                {completedTodos.length > 0 && (
+                    <button
+                        className="btn-primary bg-zinc-700 hover:bg-zinc-800 py-1"
+                        onClick={clearCompletedTodos}
+                    >
+                        Clear completed todos
+                    </button>
+                )}
                 <Todos
                     todos={uncompletedTodos}
                     title="Uncompleted Todos"
