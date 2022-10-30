@@ -75,10 +75,10 @@ function App() {
                     type="text"
                     value={newTodoContent}
                     onChange={e => setNewTodoContent(e.target.value)}
-                    placeholder="My todo..."
+                    placeholder="Mój paln..."
                 />
                 <button className="grow bg-emerald-600 rounded-md py-1 hover:bg-emerald-700">
-                    Add
+                    Dodaj
                 </button>
             </form>
 
@@ -88,18 +88,18 @@ function App() {
                         className="btn-primary bg-zinc-700 hover:bg-zinc-800 py-1"
                         onClick={clearCompletedTodos}
                     >
-                        Clear completed todos
+                        Wyczyść ukończone palny
                     </button>
                 )}
                 <Todos
                     todos={uncompletedTodos}
-                    title="Uncompleted Todos"
+                    title="Nieukończone palny"
                     removeTodo={removeTodo}
                     completeTodo={completeTodo}
                 />
                 <Todos
                     todos={completedTodos}
-                    title="Completed Todos"
+                    title="Ukończone palny"
                     removeTodo={removeTodo}
                     completeTodo={completeTodo}
                 />
