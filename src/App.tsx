@@ -13,6 +13,18 @@ function App() {
     const completedTodos: Todo[] = [];
     const uncompletedTodos: Todo[] = [];
 
+    if (localStorage.getItem('todos') !== null) {
+        const storedTodos: Todo[] = JSON.parse(localStorage.getItem('todos')!);
+        const storedTodosIds = storedTodos.map(todo => todo.id);
+        const todosIds = todos.map(todo => todo.id);
+        for (const storedTodoId of storedTodosIds) {
+            if (!todosIds.includes(storedTodoId)) {
+                setTodos(storedTodos);
+                return;
+            }
+        }
+    }
+
     for (const todo of todos) {
         if (todo.isCompleted) {
             completedTodos.push(todo);
@@ -27,14 +39,21 @@ function App() {
         setTodos(todos =>
             todos.concat({ id: crypto.randomUUID(), content: newTodoContent, isCompleted: false })
         );
+        localStorage.setItem('todos', JSON.stringify(todos));
         setNewTodoContent('');
     }
 
     function removeTodo(todoId: string) {
+        const newTodos = todos.filter(todo => todo.id !== todoId);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
         setTodos(todos => todos.filter(todo => todo.id !== todoId));
     }
 
     function completeTodo(todoId: string) {
+        const newTodos = todos.map(todo =>
+            todo.id === todoId ? { ...todo, isCompleted: !todo.isCompleted } : todo
+        );
+        localStorage.setItem('todos', JSON.stringify(newTodos));
         setTodos(todos =>
             todos.map(todo =>
                 todo.id === todoId ? { ...todo, isCompleted: !todo.isCompleted } : todo
@@ -43,6 +62,8 @@ function App() {
     }
 
     function clearCompletedTodos() {
+        const newTodos = todos.filter(todo => !todo.isCompleted);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
         setTodos(todos => todos.filter(todo => !todo.isCompleted));
     }
 
