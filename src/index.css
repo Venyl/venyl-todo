@@ -4,11 +4,11 @@
 
 @layer components {
     .btn-primary {
-        @apply cursor-pointer self-center py-1 px-6  bg-blue-500 font-semibold rounded-sm hover:bg-blue-700;
+        @apply cursor-pointer self-center py-1 px-4  bg-blue-500 font-semibold rounded-sm hover:bg-blue-700;
     }
 
     .btn-warning {
-        @apply cursor-pointer self-center py-1 px-6  bg-amber-500 font-semibold rounded-sm hover:bg-amber-600;
+        @apply cursor-pointer self-center py-1 px-4  bg-amber-500 font-semibold rounded-sm hover:bg-amber-600;
     }
 
     .separator {
